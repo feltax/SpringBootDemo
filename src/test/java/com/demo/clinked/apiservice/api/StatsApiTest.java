@@ -28,31 +28,19 @@ class StatsApiTest {
 
     @InjectMocks
     private ArticleStatsApi statsApi;
-
-    private Logger LOG = Logger.getLogger("ApiApplicationImplTest");
+    private final Logger LOG = Logger.getLogger("ApiApplicationImplTest");
     private LocalDate date;
-    private Article testArticle;
 
     @BeforeEach
     void setUp() {
         LOG.info("startup");
         date = LocalDate.now();
-        testArticle = createTestArticle();
+
     }
 
     @AfterEach
     void tearDown() {
         LOG.info("teardown");
-    }
-
-    private Article createTestArticle() {
-        Article filledArticle = new Article();
-        filledArticle.setTitle("This is a test Title");
-        filledArticle.setAuthor("Author B Madeupius");
-        filledArticle.setPublishingDate(LocalDate.now().plusDays(1));
-        filledArticle.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies lectus et diam pellentesque, nec laoreet ipsum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce porta faucibus turpis in porttitor. Phasellus varius in mauris non fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec eget est vel ligula rutrum condimentum. Maecenas porttitor tellus nibh, eget pretium orci bibendum a. Sed purus nisi, luctus iaculis bibendum a, facilisis quis mi. Nunc varius sed ex ut egestas. Donec sollicitudin vestibulum consequat.");
-
-        return filledArticle;
     }
 
     @Test

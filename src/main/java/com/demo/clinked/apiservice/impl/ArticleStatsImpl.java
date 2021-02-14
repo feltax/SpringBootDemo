@@ -31,4 +31,5 @@ public class ArticleStatsImpl {
         return articlesByPublishingDate.size();
     }
 
+
 }

@@ -26,28 +26,27 @@ import static org.mockito.Mockito.verify;
 class ArticleImplTest {
 
     @Mock
-    ArticleRepository articleRepository;
+    private ArticleRepository articleRepository;
     @InjectMocks
-    ArticleImpl articleImpl;
-    LocalDate today = LocalDate.now();
-    List<Article> list = new ArrayList<>();
-    Pageable firstPageWith3Articles = PageRequest.of(0, 3);
-    Page<Article> page = Page.empty(firstPageWith3Articles);
-
-    private Logger LOG = Logger.getLogger("ArticleImplTest");
+    private ArticleImpl articleImpl;
+    private LocalDate today;
+    private Pageable firstPageWith3Articles;
+    private Page<Article> page;
+    private final Logger LOG = Logger.getLogger("ArticleImplTest");
 
 
     @BeforeEach
     void setUp() throws Exception {
         LOG.info("startup");
-        createArticles();
-
+        today = LocalDate.now();
+        firstPageWith3Articles = PageRequest.of(0, 3);
+        page = Page.empty(firstPageWith3Articles);
     }
 
     @AfterEach
     void tearDown() {
         LOG.info("teardown");
-        articleRepository.deleteAll();
+
     }
 
     @Test
@@ -65,12 +64,5 @@ class ArticleImplTest {
         verify(articleRepository).save(testArticle);
     }
 
-
-    private void createArticles() throws Exception {
-        list.add(new Article("Article 1", "Oliver Butler", "Article one text words", today));
-        list.add(new Article("Article 2", "Oliver Butler", "Article two text words", today.plusDays(1)));
-        list.add(new Article("Article 3", "Oliver Butler", "Article three text words", today.plusDays(2)));
-        list.add(new Article("Article 4", "Oliver Butler", "Article four text words", today.plusDays(1)));
-    }
 
 }
