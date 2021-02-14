@@ -1,7 +1,8 @@
 package com.demo.clinked.apiservice.api;
 
+import com.demo.clinked.apiservice.ApiApplication;
 import com.demo.clinked.apiservice.data.Article;
-import com.demo.clinked.apiservice.impl.ArticleServiceImpl;
+import com.demo.clinked.apiservice.impl.ArticleImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,25 +11,25 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.util.logging.Logger;
-
-
 import static org.mockito.Mockito.verify;
-@SpringBootTest
-class ApiApplicationImplTest {
+
+@SpringBootTest(classes = ApiApplication.class)
+class ArticleApiTest {
 
 
     @Mock
-    private ArticleServiceImpl articleServiceImpl;
+    private ArticleImpl articleServiceImpl;
 
     @Mock
     private DiscoveryClient discoveryClient;
 
     @InjectMocks
-    private ApiApplicationImpl apiApplicationImpl;
+    private ArticleApi articleApi;
 
     private Logger LOG = Logger.getLogger("ApiApplicationImplTest");
     private LocalDate date;
@@ -39,6 +40,10 @@ class ApiApplicationImplTest {
         LOG.info("startup");
         date = LocalDate.now();
         testArticle = createTestArticle();
+    }
+    @AfterEach
+    void tearDown() {
+        LOG.info("teardown");
     }
 
     private Article createTestArticle() {
@@ -51,37 +56,20 @@ class ApiApplicationImplTest {
         return filledArticle;
     }
 
-    @AfterEach
-    void tearDown() {
-        LOG.info("teardown");
-    }
-
     @Test
     void getArticles() {
         Pageable firstPageWith3Articles = PageRequest.of(0, 3);
-        apiApplicationImpl.getArticles(firstPageWith3Articles);
+        articleApi.getArticles(0,3);
         Mockito.when((articleServiceImpl.getArticles(firstPageWith3Articles))).thenReturn(null);
         verify (articleServiceImpl).getArticles(firstPageWith3Articles);
     }
 
     @Test
     void createArticle() {
-        apiApplicationImpl.createArticle(testArticle);
+        articleApi.createArticle(testArticle);
         Mockito.when((articleServiceImpl.createArticle(testArticle))).thenReturn(testArticle);
         verify (articleServiceImpl).createArticle(testArticle);
     }
 
-    @Test
-    void getArticleStatsForWeek() {
-        apiApplicationImpl.getArticleStatsForWeek(date);
-        Mockito.when((articleServiceImpl.getArticleStatsForWeek(date))).thenReturn(null);
-        verify (articleServiceImpl).getArticleStatsForWeek(date);
-    }
 
-    @Test
-    void getArticleStatsForWeekNoDate() {
-        apiApplicationImpl.getArticleStatsForWeekNoDate();
-        Mockito.when((articleServiceImpl.getArticleStatsForWeek(date))).thenReturn(null);
-        verify (articleServiceImpl).getArticleStatsForWeek(date);
-    }
 }

@@ -1,20 +1,31 @@
 package com.demo.clinked.apiservice.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-public class Article {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Article implements Serializable {
     @Id
+    @GeneratedValue
     private UUID id;
     @Length(max = 100)
     private String title;
     private String author;
     private String content;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate publishingDate;
 
     public UUID getId() {
@@ -58,7 +69,7 @@ public class Article {
     }
 
     public Article(String title, String author, String content, LocalDate publishingDate) {
-        this.id = UUID.randomUUID();
+
         this.title = title;
         this.author = author;
         this.content = content;
@@ -66,7 +77,7 @@ public class Article {
     }
 
     public Article() {
-        this.id = UUID.randomUUID();
+
     }
 
 

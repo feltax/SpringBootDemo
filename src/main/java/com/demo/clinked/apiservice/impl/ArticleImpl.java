@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
-import java.util.*;
+
 
 @Component
-public class ArticleServiceImpl implements InitializingBean {
+public class ArticleImpl implements InitializingBean {
 
     @Autowired
     ArticleRepository articleRepository;
@@ -28,20 +27,6 @@ public class ArticleServiceImpl implements InitializingBean {
     public Article createArticle(Article newArticle) {
         articleRepository.save(newArticle);
         return (newArticle);
-    }
-
-    public Map<String, Long> getArticleStatsForWeek(LocalDate date) {
-        Map<String, Long> dayCountMap = new HashMap<>();
-        int i = 0;
-        while (i < 6) {
-            dayCountMap.put(String.valueOf(date.getDayOfWeek()), countArticlesPublishedOnDate(date));
-            i++;
-        }
-        return null;
-    }
-
-    private Long countArticlesPublishedOnDate(LocalDate date) {
-       return articleRepository.countByPublishingDate(date);
     }
 
     @Override
