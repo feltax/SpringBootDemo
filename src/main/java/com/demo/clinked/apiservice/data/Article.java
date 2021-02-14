@@ -1,10 +1,17 @@
 package com.demo.clinked.apiservice.data;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Entity
 public class Article {
+    @Id
     private UUID id;
+    @Length(max = 100)
     private String title;
     private String author;
     private String content;
@@ -57,4 +64,10 @@ public class Article {
         this.content = content;
         this.publishingDate = publishingDate;
     }
+
+    public Article() {
+        this.id = UUID.randomUUID();
+    }
+
+
 }
