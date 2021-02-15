@@ -23,6 +23,7 @@ Swagger is setup for testing the api
 
 -----------------------------------------------------
 task description (from email)
+
 Create a secured restful API to create and list articles
 - To create an article the user should provide a title, author, the content and date for publishing.
 - All of the fields are mandatory and the title should not exceed 100 characters. The publishing date should bind to ISO 8601 format.
