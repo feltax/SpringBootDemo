@@ -1,8 +1,6 @@
-package com.demo.clinked.apiservice.api;
+package com.demo.clinked.apiservice.controller;
 
 import com.demo.clinked.apiservice.ApiApplication;
-import com.demo.clinked.apiservice.data.Article;
-import com.demo.clinked.apiservice.impl.ArticleImpl;
 import com.demo.clinked.apiservice.impl.ArticleStatsImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +25,7 @@ class StatsApiTest {
     private DiscoveryClient discoveryClient;
 
     @InjectMocks
-    private ArticleStatsApi statsApi;
+    private ArticleStatsController statsApi;
     private final Logger LOG = Logger.getLogger("ApiApplicationImplTest");
     private LocalDate date;
 

@@ -12,7 +12,7 @@
     <artifactId>api-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>api</name>
-    <description>api microservice</description>
+    <description>api</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.1</spring-cloud.version>
@@ -62,6 +62,15 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -82,5 +91,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

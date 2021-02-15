@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 
 @EnableDiscoveryClient
 @ComponentScan
-@EnableAutoConfiguration(exclude = {
-        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
-})
+@EnableAutoConfiguration
 public class ApiApplication {
 
     public static void main(String[] args) {

@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Article implements Serializable {
     @Id
     @GeneratedValue

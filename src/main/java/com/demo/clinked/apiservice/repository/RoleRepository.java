@@ -1,0 +1,11 @@
+package com.demo.clinked.apiservice.repository;
+
+import com.demo.clinked.apiservice.data.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+import java.util.UUID;
+
+public interface RoleRepository extends JpaRepository<Role, UUID> {
+    Role findByName(String name);
+}

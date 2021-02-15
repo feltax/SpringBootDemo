@@ -1,7 +1,8 @@
 package com.demo.clinked.apiservice.repository;
 
-import com.demo.clinked.apiservice.data.User;
-import org.springframework.data.repository.CrudRepository;
+import com.demo.clinked.apiservice.data.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,9 +10,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
-    List<User> findByUsername(String username);
-    Optional<User> findById(UUID id);
+    Optional<UserEntity> findById(UUID id);
+   UserEntity findByUsername(String Username);
+    List<UserEntity> findAll();
 
 }

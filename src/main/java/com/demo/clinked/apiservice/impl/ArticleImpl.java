@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 
 @Component
-public class ArticleImpl implements InitializingBean {
+public class ArticleImpl {
 
     @Autowired
     ArticleRepository articleRepository;
@@ -29,11 +29,5 @@ public class ArticleImpl implements InitializingBean {
         return (newArticle);
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        articleRepository.save(new Article("Article 1", "Oliver Butler", "Article one text words", today));
-        articleRepository.save(new Article("Article 2", "Oliver Butler", "Article two text words", today.plusDays(1)));
-        articleRepository.save(new Article("Article 3", "Oliver Butler", "Article three text words", today.plusDays(2)));
-        articleRepository.save(new Article("Article 4", "Oliver Butler", "Article four text words", today.plusDays(1)));
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.demo.clinked.apiservice.api;
+package com.demo.clinked.apiservice.controller;
 
 import com.demo.clinked.apiservice.ApiApplication;
 import com.demo.clinked.apiservice.data.Article;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = ApiApplication.class)
-class ArticleApiTest {
+class ArticleControllerTest {
 
 
     @Mock
@@ -29,7 +29,7 @@ class ArticleApiTest {
     private DiscoveryClient discoveryClient;
 
     @InjectMocks
-    private ArticleApi articleApi;
+    private ArticleController articleController;
     private final Logger LOG = Logger.getLogger("ApiApplicationImplTest");
     private Article testArticle;
 
@@ -55,14 +55,14 @@ class ArticleApiTest {
     @Test
     void getArticles() {
         Pageable firstPageWith3Articles = PageRequest.of(0, 3);
-        articleApi.getArticles(0,3);
+        articleController.getArticles(0,3);
         Mockito.when((articleServiceImpl.getArticles(firstPageWith3Articles))).thenReturn(null);
         verify (articleServiceImpl).getArticles(firstPageWith3Articles);
     }
 
     @Test
     void createArticle() {
-        articleApi.createArticle(testArticle);
+        articleController.createArticle(testArticle);
         Mockito.when((articleServiceImpl.createArticle(testArticle))).thenReturn(testArticle);
         verify (articleServiceImpl).createArticle(testArticle);
     }

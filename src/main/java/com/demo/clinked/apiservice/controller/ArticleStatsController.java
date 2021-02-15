@@ -1,10 +1,8 @@
-package com.demo.clinked.apiservice.api;
+package com.demo.clinked.apiservice.controller;
 
-import com.demo.clinked.apiservice.impl.ArticleImpl;
 import com.demo.clinked.apiservice.impl.ArticleStatsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -12,7 +10,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/articleStats")
-public class ArticleStatsApi {
+
+public class ArticleStatsController {
 
     @Autowired
     DiscoveryClient client;
