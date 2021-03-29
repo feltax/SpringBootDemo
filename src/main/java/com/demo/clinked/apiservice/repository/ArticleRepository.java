@@ -15,4 +15,5 @@ public interface ArticleRepository extends PagingAndSortingRepository<Article, I
     Long countByPublishingDate(LocalDate date);
     List<Article> findArticlesByPublishingDate(LocalDate date);
     Article findByTitle(String title);
+
 }

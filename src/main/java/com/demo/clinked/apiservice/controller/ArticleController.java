@@ -9,30 +9,45 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/articles")
 public class ArticleController {
 
-    @Autowired
+    final
     DiscoveryClient client;
-    @Autowired
+    final
     ArticleImpl articleService;
 
+    @Autowired
+    public ArticleController(DiscoveryClient client, ArticleImpl articleService) {
+        this.client = client;
+        this.articleService = articleService;
+    }
 
-    @GetMapping(path="/{page}/{size}", produces = "application/json")
-    public Page<Article> getArticles(
+    //default get request will return page 0 with 3 results of the articles available
+    @GetMapping(path = "/", produces = "application/json")
+    public Page<Article> getDefaultArticles() {
 
-            @PathVariable("page") int page,
-            @PathVariable("size") int size){
-
-       return articleService.getArticles(PageRequest.of(page, size));
+        return articleService.getArticles(PageRequest.of(0, 3));
 
     }
 
-    @PostMapping(path="/", produces = "application/json")
+    @GetMapping(path = "/{page}/{size}", produces = "application/json")
+    public Page<Article> getArticles(
+
+            @PathVariable("page") Integer page,
+            @PathVariable("size") Integer size) {
+
+        return articleService.getArticles(PageRequest.of(page, size));
+
+    }
+
+    @PostMapping(path = "/", produces = "application/json")
     public Article createArticle(
 
-            @RequestBody Article newArticle){
+            @RequestBody Article newArticle) {
 
         return articleService.createArticle(newArticle);
     }

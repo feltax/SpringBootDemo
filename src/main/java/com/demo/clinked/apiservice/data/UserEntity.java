@@ -18,7 +18,7 @@ public class UserEntity implements Serializable {
     private String username;
     private String password;
     @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
+    @JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles;
 
     public UserEntity(String username, String password) {

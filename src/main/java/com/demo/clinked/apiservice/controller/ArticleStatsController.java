@@ -13,10 +13,16 @@ import java.util.Map;
 
 public class ArticleStatsController {
 
-    @Autowired
+    final
     DiscoveryClient client;
-    @Autowired
+    final
     ArticleStatsImpl articleStatsImpl;
+
+    @Autowired
+    public ArticleStatsController(DiscoveryClient client, ArticleStatsImpl articleStatsImpl) {
+        this.client = client;
+        this.articleStatsImpl = articleStatsImpl;
+    }
 
     @GetMapping(path="/", produces = "application/json")
     public Map<String, Integer> getArticleStatsForWeek(){

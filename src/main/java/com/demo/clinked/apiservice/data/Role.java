@@ -42,6 +42,7 @@ public class Role implements Serializable {
         return result;
     }
 
+    //equals comparator uses name field
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
