@@ -23,8 +23,12 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    private final UserRepository repo;
+
     @Autowired
-    private UserRepository repo;
+    public UserDetailsServiceImpl(UserRepository repo) {
+        this.repo = repo;
+    }
 
     @Override
     @Transactional
