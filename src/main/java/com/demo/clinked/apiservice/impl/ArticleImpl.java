@@ -7,23 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
 
 
 @Component
 public class ArticleImpl {
 
-    @Autowired
-    ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
-    LocalDate today = LocalDate.now();
+    @Autowired
+    public ArticleImpl(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
 
     public Page<Article> getArticles(Pageable pageable) {
 
-        Page<Article> allArticles = articleRepository.findAll(pageable);
-        return allArticles;
+        return articleRepository.findAll(pageable);
     }
 
+    @Transactional
     public Article createArticle(Article newArticle) {
         articleRepository.save(newArticle);
         return (newArticle);

@@ -3,6 +3,7 @@ package com.demo.clinked.apiservice.controller;
 import com.demo.clinked.apiservice.ApiApplication;
 import com.demo.clinked.apiservice.data.Article;
 import com.demo.clinked.apiservice.impl.ArticleImpl;
+import io.swagger.models.auth.In;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,8 +55,18 @@ class ArticleControllerTest {
 
     @Test
     void getArticles() {
+        Integer page = 1;
+        Integer size = 3;
+        Pageable firstPageWith3Articles = PageRequest.of(1, 3);
+        articleController.getArticles(page, size);
+        Mockito.when((articleServiceImpl.getArticles(firstPageWith3Articles))).thenReturn(null);
+        verify (articleServiceImpl).getArticles(firstPageWith3Articles);
+    }
+
+    @Test
+    void getDefaultArticles() {
         Pageable firstPageWith3Articles = PageRequest.of(0, 3);
-        articleController.getArticles(0,3);
+        articleController.getDefaultArticles();
         Mockito.when((articleServiceImpl.getArticles(firstPageWith3Articles))).thenReturn(null);
         verify (articleServiceImpl).getArticles(firstPageWith3Articles);
     }

@@ -12,9 +12,15 @@ import java.util.List;
 @Component
 public class ArticleStatsImpl {
 
-    @Autowired
-    ArticleRepository articleRepository;
+    final ArticleRepository articleRepository;
 
+    @Autowired
+    public ArticleStatsImpl(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
+
+    //returns a hashmap of <date, int> for the count of articles published on each day
+    //Note: date used disregards time (LocalDate vs LocalDateTime)
     public LinkedHashMap<String, Integer> getArticleStatsForWeek(LocalDate date) {
         LinkedHashMap<String, Integer> dayCountMap = new LinkedHashMap<>();
         int i = 0;
