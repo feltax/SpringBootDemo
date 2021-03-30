@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Map;
-
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RestController
 @RequestMapping("/articleStats")
 

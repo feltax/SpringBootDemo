@@ -45,7 +45,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         // Create users
         createUserIfNotFound("user", userRole);
         createUserIfNotFound("admin", adminRole);
-        createArtical1IfNotFound("Article 1");
+        createArticle1IfNotFound("Article 1");
         alreadySetup = true;
     }
 
@@ -73,7 +73,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     }
 
     @Transactional
-    public Article createArtical1IfNotFound(String title) {
+    public Article createArticle1IfNotFound(String title) {
         Article article = articleRepository.findByTitle(title);
         if (article == null) {
             LocalDate today = LocalDate.now();
