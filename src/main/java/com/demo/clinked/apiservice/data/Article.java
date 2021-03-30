@@ -1,6 +1,5 @@
 package com.demo.clinked.apiservice.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -18,61 +17,61 @@ import java.util.UUID;
 public class Article implements Serializable {
     @Id
     @GeneratedValue
-    private UUID id;
+    private UUID articleId;
     @Length(max = 100)
-    private String title;
-    private String author;
-    private String content;
+    private String articleTitle;
+    private String articleAuthor;
+    private String articleContent;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate publishingDate;
+    private LocalDate articlePublishingDate;
 
-    public UUID getId() {
-        return id;
+    public UUID getArticleId() {
+        return articleId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getArticleTitle() {
+        return articleTitle;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getArticleAuthor() {
+        return articleAuthor;
     }
 
-    public String getContent() {
-        return content;
+    public String getArticleContent() {
+        return articleContent;
     }
 
-    public LocalDate getPublishingDate() {
-        return publishingDate;
+    public LocalDate getArticlePublishingDate() {
+        return articlePublishingDate;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setArticleId(UUID id) {
+        this.articleId = id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setArticleTitle(String title) {
+        this.articleTitle = title;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setArticleAuthor(String author) {
+        this.articleAuthor = author;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setArticleContent(String content) {
+        this.articleContent = content;
     }
 
-    public void setPublishingDate(LocalDate publishingDate) {
-        this.publishingDate = publishingDate;
+    public void setArticlePublishingDate(LocalDate publishingDate) {
+        this.articlePublishingDate = publishingDate;
     }
 
-    public Article(String title, String author, String content, LocalDate publishingDate) {
+    public Article(String articleTitle, String articleAuthor, String content, LocalDate publishingDate) {
 
-        this.title = title;
-        this.author = author;
-        this.content = content;
-        this.publishingDate = publishingDate;
+        this.articleTitle = articleTitle;
+        this.articleAuthor = articleAuthor;
+        this.articleContent = content;
+        this.articlePublishingDate = publishingDate;
     }
 
     public Article() {

@@ -12,8 +12,8 @@ import java.util.List;
 public interface ArticleRepository extends PagingAndSortingRepository<Article, Integer> {
 
     List<Article> getAllBy(Pageable pageable);
-    Long countByPublishingDate(LocalDate date);
-    List<Article> findArticlesByPublishingDate(LocalDate date);
-    Article findByTitle(String title);
+    Long countByArticlePublishingDate(LocalDate date);
+    List<Article> findArticlesByArticlePublishingDate(LocalDate date);
+    Article findByArticleTitle(String title);
 
 }

@@ -45,7 +45,12 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         // Create users
         createUserIfNotFound("user", userRole);
         createUserIfNotFound("admin", adminRole);
-        createArticle1IfNotFound("Article 1");
+        createArticle1IfNotFound();
+        createArticle2IfNotFound();
+        createArticle3IfNotFound();
+        createArticle4IfNotFound();
+        createArticle5IfNotFound();
+
         alreadySetup = true;
     }
 
@@ -73,11 +78,55 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     }
 
     @Transactional
-    public Article createArticle1IfNotFound(String title) {
-        Article article = articleRepository.findByTitle(title);
+    public Article createArticle1IfNotFound() {
+        Article article = articleRepository.findByArticleTitle("Article 1");
         if (article == null) {
             LocalDate today = LocalDate.now();
             article = new Article("Article 1", "Oliver Butler", "Article one text words", today);
+            article = articleRepository.save(article);
+        }
+        return article;
+    }
+
+    @Transactional
+    public Article createArticle2IfNotFound() {
+        Article article = articleRepository.findByArticleTitle("Mask importance");
+        if (article == null) {
+            LocalDate today = LocalDate.now();
+            article = new Article("Mask importance", "Michael Myrs", "Article one text words", today.plusDays(1));
+            article = articleRepository.save(article);
+        }
+        return article;
+    }
+
+    @Transactional
+    public Article createArticle3IfNotFound() {
+        Article article = articleRepository.findByArticleTitle("Cats and how to cook them");
+        if (article == null) {
+            LocalDate today = LocalDate.now();
+            article = new Article("Cats and how to cook them", "Kitty Perry", "Article one text words", today);
+            article = articleRepository.save(article);
+        }
+        return article;
+    }
+
+    @Transactional
+    public Article createArticle4IfNotFound() {
+        Article article = articleRepository.findByArticleTitle("Demolition and deconstruction");
+        if (article == null) {
+            LocalDate today = LocalDate.now();
+            article = new Article("Demolition and deconstruction", "Miley Cyrus", "Article one text words",  today.plusDays(2));
+            article = articleRepository.save(article);
+        }
+        return article;
+    }
+
+    @Transactional
+    public Article createArticle5IfNotFound() {
+        Article article = articleRepository.findByArticleTitle("Mixed nuts - a psychological profiling study");
+        if (article == null) {
+            LocalDate today = LocalDate.now();
+            article = new Article("Mixed nuts - a psychological profiling study", "Dr Snacks", "Article one text words",  today.plusDays(5));
             article = articleRepository.save(article);
         }
         return article;
