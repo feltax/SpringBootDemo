@@ -19,8 +19,8 @@ public class ArticleStatsImpl {
         this.articleRepository = articleRepository;
     }
 
-    //returns a hashmap of <date, int> for the count of articles published on each day
-    //Note: date used disregards time (LocalDate vs LocalDateTime)
+    //returns a hashmap of <date(str), int> for the count of articles published on each day
+    //Note: date used for comparison disregards time (LocalDate vs LocalDateTime), see /config/DateConfig.class
     public LinkedHashMap<String, Integer> getArticleStatsForWeek(LocalDate date) {
         LinkedHashMap<String, Integer> dayCountMap = new LinkedHashMap<>();
         int i = 0;
