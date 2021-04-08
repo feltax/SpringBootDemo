@@ -3,7 +3,6 @@ package com.demo.clinked.apiservice.controller;
 import com.demo.clinked.apiservice.ApiApplication;
 import com.demo.clinked.apiservice.data.Article;
 import com.demo.clinked.apiservice.impl.ArticleImpl;
-import io.swagger.models.auth.In;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,10 +45,10 @@ class ArticleControllerTest {
 
     private Article createTestArticle() {
         Article filledArticle = new Article();
-        filledArticle.setTitle("This is a test Title");
-        filledArticle.setAuthor("Author B Madeupius");
-        filledArticle.setPublishingDate(LocalDate.now());
-        filledArticle.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies lectus et diam pellentesque, nec laoreet ipsum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce porta faucibus turpis in porttitor. Phasellus varius in mauris non fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec eget est vel ligula rutrum condimentum. Maecenas porttitor tellus nibh, eget pretium orci bibendum a. Sed purus nisi, luctus iaculis bibendum a, facilisis quis mi. Nunc varius sed ex ut egestas. Donec sollicitudin vestibulum consequat.");
+        filledArticle.setArticleTitle("This is a test Title");
+        filledArticle.setArticleAuthor("Author B Madeupius");
+        filledArticle.setArticlePublishingDate(LocalDate.now());
+        filledArticle.setArticleContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies lectus et diam pellentesque, nec laoreet ipsum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce porta faucibus turpis in porttitor. Phasellus varius in mauris non fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec eget est vel ligula rutrum condimentum. Maecenas porttitor tellus nibh, eget pretium orci bibendum a. Sed purus nisi, luctus iaculis bibendum a, facilisis quis mi. Nunc varius sed ex ut egestas. Donec sollicitudin vestibulum consequat.");
         return filledArticle;
     }
 

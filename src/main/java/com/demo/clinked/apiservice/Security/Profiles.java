@@ -5,5 +5,5 @@ public class Profiles {
     private Profiles() {
     }
 
-    public static final String BASIC_AUTH = "basicAuth";
+    public static final String BASIC_AUTH = "basicauth";
 }

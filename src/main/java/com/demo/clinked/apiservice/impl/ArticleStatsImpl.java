@@ -33,7 +33,7 @@ public class ArticleStatsImpl {
     }
 
     private Integer countArticlesPublishedOnDate(LocalDate date) {
-        List<Article> articlesByPublishingDate = articleRepository.findArticlesByPublishingDate(date);
+        List<Article> articlesByPublishingDate = articleRepository.findArticlesByArticlePublishingDate(date);
         return articlesByPublishingDate.size();
     }
 

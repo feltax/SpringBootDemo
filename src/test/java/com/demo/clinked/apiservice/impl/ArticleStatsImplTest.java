@@ -45,10 +45,10 @@ class ArticleStatsImplTest {
     @Test
     void getArticleStatsForWeek() {
         List<Article> articlesByPublishingDate = new ArrayList<>();
-        Mockito.when((articleRepository.findArticlesByPublishingDate(date))).thenReturn(articlesByPublishingDate);
+        Mockito.when((articleRepository.findArticlesByArticlePublishingDate(date))).thenReturn(articlesByPublishingDate);
 
         Map<String, Integer> returnMap = articleStatsImpl.getArticleStatsForWeek(date);
-        Mockito.verify(articleRepository, Mockito.times(7)).findArticlesByPublishingDate(Mockito.any(LocalDate.class));
+        Mockito.verify(articleRepository, Mockito.times(7)).findArticlesByArticlePublishingDate(Mockito.any(LocalDate.class));
         assert(returnMap.size() == 7);
     }
 }

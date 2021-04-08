@@ -23,9 +23,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class BasicAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("userDetailsServiceImpl")
+    private final UserDetailsService userDetailsService;
+
     @Autowired
-    private UserDetailsService userDetailsService;
+    public BasicAuthSecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -58,6 +61,5 @@ public class BasicAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
        return new BCryptPasswordEncoder(10);
-
     }
 }
