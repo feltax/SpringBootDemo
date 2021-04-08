@@ -22,14 +22,18 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
     private boolean alreadySetup = false;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    private final RoleRepository roleRepository;
+
+    private final ArticleRepository articleRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private ArticleRepository articleRepository;
+    public SetupDataLoader(UserRepository userRepository, RoleRepository roleRepository, ArticleRepository articleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.articleRepository = articleRepository;
+    }
 
     @Override
     @Transactional
@@ -115,7 +119,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Article article = articleRepository.findByArticleTitle("Demolition and deconstruction");
         if (article == null) {
             LocalDate today = LocalDate.now();
-            article = new Article("Demolition and deconstruction", "Miley Cyrus", "Article one text words",  today.plusDays(2));
+            article = new Article("Demolition and deconstruction", "Miley Cyrus", "Article one text words", today.plusDays(2));
             article = articleRepository.save(article);
         }
         return article;
@@ -126,7 +130,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Article article = articleRepository.findByArticleTitle("Mixed nuts - a psychological profiling study");
         if (article == null) {
             LocalDate today = LocalDate.now();
-            article = new Article("Mixed nuts - a psychological profiling study", "Dr Snacks", "Article one text words",  today.plusDays(5));
+            article = new Article("Mixed nuts - a psychological profiling study", "Dr Snacks", "Article one text words", today.plusDays(5));
             article = articleRepository.save(article);
         }
         return article;
